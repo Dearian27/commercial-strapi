@@ -396,36 +396,6 @@ export interface ApiBrandBrand extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiContactRequestContactRequest
-  extends Struct.SingleTypeSchema {
-  collectionName: 'contact_requests';
-  info: {
-    description: '';
-    displayName: 'contact-request';
-    pluralName: 'contact-requests';
-    singularName: 'contact-request';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::contact-request.contact-request'
-    > &
-      Schema.Attribute.Private;
-    Order: Schema.Attribute.Component<'shared.order', true>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -454,6 +424,43 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
     title: Schema.Attribute.String;
     title2: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
+  collectionName: 'orders';
+  info: {
+    description: '';
+    displayName: 'order';
+    pluralName: 'orders';
+    singularName: 'order';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    order_status: Schema.Attribute.Enumeration<
+      [
+        '\u041E\u043F\u0440\u0430\u0446\u044C\u043E\u0432\u0430\u043D\u0435',
+        '\u041D\u0435\u043E\u043F\u0440\u0430\u0446\u044C\u043E\u0432\u0430\u043D\u0435',
+        '\u0423 \u043F\u0440\u043E\u0446\u0435\u0441\u0456',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'\u041D\u0435\u043E\u043F\u0440\u0430\u0446\u044C\u043E\u0432\u0430\u043D\u0435'>;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -970,8 +977,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::brand.brand': ApiBrandBrand;
-      'api::contact-request.contact-request': ApiContactRequestContactRequest;
       'api::global.global': ApiGlobalGlobal;
+      'api::order.order': ApiOrderOrder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
