@@ -1,5 +1,19 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedBrand extends Struct.ComponentSchema {
+  collectionName: 'components_shared_brands';
+  info: {
+    description: '';
+    displayName: 'Brand';
+    icon: 'earth';
+  };
+  attributes: {
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    showTitle: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_links';
   info: {
@@ -19,6 +33,18 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
   attributes: {
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedOrder extends Struct.ComponentSchema {
+  collectionName: 'components_shared_orders';
+  info: {
+    description: '';
+    displayName: 'Order';
+    icon: 'shoppingCart';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
   };
 }
 
@@ -76,8 +102,10 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.brand': SharedBrand;
       'shared.link': SharedLink;
       'shared.media': SharedMedia;
+      'shared.order': SharedOrder;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;

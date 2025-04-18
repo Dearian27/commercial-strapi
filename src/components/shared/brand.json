@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_brands",
+  "info": {
+    "displayName": "Brand",
+    "icon": "earth",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
