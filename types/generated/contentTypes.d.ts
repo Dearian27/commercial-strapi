@@ -396,6 +396,39 @@ export interface ApiBrandBrand extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiChannelChannel extends Struct.CollectionTypeSchema {
+  collectionName: 'channels';
+  info: {
+    displayName: 'Channel';
+    pluralName: 'channels';
+    singularName: 'channel';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    daily_price: Schema.Attribute.Integer & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::channel.channel'
+    > &
+      Schema.Attribute.Private;
+    members_count: Schema.Attribute.Integer & Schema.Attribute.Required;
+    night_price: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -977,6 +1010,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::brand.brand': ApiBrandBrand;
+      'api::channel.channel': ApiChannelChannel;
       'api::global.global': ApiGlobalGlobal;
       'api::order.order': ApiOrderOrder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

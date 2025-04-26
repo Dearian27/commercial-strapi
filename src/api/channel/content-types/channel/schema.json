@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "channels",
+  "info": {
+    "singularName": "channel",
+    "pluralName": "channels",
+    "displayName": "Channel"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "daily_price": {
+      "type": "integer",
+      "required": true
+    },
+    "night_price": {
+      "type": "integer"
+    },
+    "members_count": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
