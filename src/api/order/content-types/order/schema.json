@@ -31,6 +31,17 @@
         "У процесі"
       ],
       "default": "Неопрацьоване"
+    },
+    "order_type": {
+      "type": "enumeration",
+      "enum": [
+        "Пакет",
+        "Канал"
+      ]
+    },
+    "purchase_name": {
+      "type": "string",
+      "required": true
     }
   }
 }
