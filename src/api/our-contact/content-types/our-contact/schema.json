@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "our_contacts",
+  "info": {
+    "singularName": "our-contact",
+    "pluralName": "our-contacts",
+    "displayName": "Our contacts"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "email": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "viber": {
+      "type": "string"
+    }
+  }
+}
